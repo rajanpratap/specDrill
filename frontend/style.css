@@ -1,0 +1,329 @@
+/* frontend/style.css */
+
+/* 1. RESET & ROOT VARIABLES */
+:root {
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    
+    --bg-dark: #111827;      /* Dark blue-gray for main background */
+    --bg-surface: #1f2937;   /* Slightly lighter for card backgrounds */
+    --border-color: #374151; /* Subtle borders */
+    
+    --primary-blue: #3b82f6;
+    --primary-blue-hover: #60a5fa;
+
+    --text-primary: #e5e7eb;   /* Off-white for main text */
+    --text-secondary: #9ca3af; /* Lighter gray for secondary text */
+    --text-subtle: #6b7280;    /* Even lighter for placeholders, etc. */
+
+    --success: #22c55e;
+    --error: #ef4444;
+    --warning: #f59e0b;
+
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. GENERAL STYLING & LAYOUT */
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15), transparent 40%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (min-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* 3. HEADER */
+.app-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--primary-blue);
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.app-header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: var(--text-primary);
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+/* 4. CARDS & SECTIONS */
+.card {
+    background: var(--bg-surface);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.card-header h2 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.card-header h2 svg {
+    width: 20px;
+    height: 20px;
+    color: var(--text-subtle);
+}
+
+/* 5. FORMS & TEXTAREA */
+#openapi-input {
+    width: 100%;
+    min-height: 350px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#openapi-input::placeholder {
+    color: var(--text-subtle);
+}
+
+#openapi-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* 6. BUTTONS */
+.actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn .icon { width: 1.2rem; height: 1.2rem; }
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--primary-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+.btn-secondary:hover:not(:disabled) {
+    background-color: var(--border-color);
+}
+
+.btn-tertiary {
+    background: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+}
+.btn-tertiary:hover:not(:disabled) {
+    color: var(--text-primary);
+    background-color: var(--border-color);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 7. OUTPUT SECTION & SYNTAX HIGHLIGHTING */
+.output-actions { display: flex; gap: 0.75rem; }
+.result-info {
+    background: rgba(59, 130, 246, 0.1);
+    border-left: 3px solid var(--primary-blue);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-blue-hover);
+    font-size: 0.9rem;
+}
+
+.result-wrapper {
+    background: var(--bg-dark);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+pre {
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    overflow-x: auto;
+    max-height: 60vh;
+}
+code[class*="language-"] {
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Professional Syntax Highlighting (VS Code Dark+ Theme) */
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: #6a9955; }
+.token.punctuation { color: #d4d4d4; }
+.token.property, .token.tag, .token.constant, .token.symbol, .token.deleted { color: #9cdcfe; }
+.token.boolean, .token.number { color: #b5cea8; }
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted { color: #ce9178; }
+.token.operator, .token.entity, .token.url { color: #d4d4d4; }
+.token.atrule, .token.attr-value, .token.keyword { color: #c586c0; }
+.token.function, .token.class-name { color: #dcdcaa; }
+.token.regex, .token.important, .token.variable { color: #d16969; }
+
+/* 8. LOADING & NOTIFICATIONS */
+.loading-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex; align-items: center; justify-content: center; z-index: 1000;
+}
+.loading-content { text-align: center; }
+.loading-content p { font-size: 1.1rem; font-weight: 500; margin-top: 1rem; }
+.loading-content small { color: var(--text-secondary); }
+.loading-spinner {
+    width: 48px; height: 48px; margin: 0 auto;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Button spinner */
+.btn .spinner {
+    width: 20px; height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Toast Notifications */
+.toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 1001; }
+.toast {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-top: 1rem;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.3s ease forwards;
+    display: flex; align-items: center;
+    max-width: 380px;
+}
+.toast.success { border-left: 4px solid var(--success); }
+.toast.error { border-left: 4px solid var(--error); }
+.toast.warning { border-left: 4px solid var(--warning); }
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+/* 9. FOOTER */
+.app-footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+.app-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.app-footer a:hover { color: var(--primary-blue); }
+
+/* 10. RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .container { padding: 1.5rem 1rem; }
+    .app-header { margin-bottom: 2rem; }
+    .card { padding: 1.5rem; }
+    .actions { flex-direction: column; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
